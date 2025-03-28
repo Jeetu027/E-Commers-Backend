@@ -57,9 +57,8 @@ const updateCategoryById = async (
 ) => {
   try {
     const { id } = req.params;
-    const { name, img } = req.body;
 
-    const result = await updateCategory({ id, name, img }); // Pass the id and updated data to the service
+    const result = await updateCategory(id, req.body as CategoryTypeUpadte); // Pass the id and updated data to the service
     res.status(200).json(result);
   } catch (error) {
     next(error);

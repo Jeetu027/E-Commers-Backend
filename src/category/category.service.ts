@@ -16,7 +16,6 @@ const findAll = async () => {
 
 // Find Category by ID
 const findById = async (id: string) => {
-  console.log("abc");
   const result: QueryResult<CategoryType> = await pool.query(
     "SELECT * FROM category WHERE id = $1",
     [id]
@@ -39,8 +38,7 @@ const createCategory = async (categoryData: CategoryType) => {
 };
 
 // Update Category
-const updateCategory = async (categoryData: CategoryTypeUpadte) => {
-  const { id } = categoryData;
+const updateCategory = async (id: string, categoryData: CategoryTypeUpadte) => {
   const oldData = await findById(id);
   const updatedData = {
     ...oldData,

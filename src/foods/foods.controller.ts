@@ -6,7 +6,7 @@ import {
   updateFood,
   deleteFood,
 } from "./foods.service";
-import { FoodType } from "./foods.types";
+import { FoodType, FoodTypeUpdate } from "./foods.types";
 
 const getAllFoods = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -47,15 +47,7 @@ const updateFoodById = async (
 ) => {
   try {
     const { id } = req.params;
-    const { name, description, type, time, category_id } = req.body;
-    const result = await updateFood(
-      id,
-      name,
-      description,
-      type,
-      time,
-      category_id
-    );
+    const result = await updateFood(id, req.body as FoodTypeUpdate);
     res.status(200).json(result);
   } catch (error) {
     next(error);
